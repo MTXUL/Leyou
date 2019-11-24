@@ -1,0 +1,55 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: clients-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
+zuul:
+  prefix: /api #添加路由
+  routes:
+    auth-service: /auth/**
+    user-service: /user/**
+    item-service: /item/**
+    search-service: /search/**
+    cart-service: /cart/**
+    order-service: /order/**
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+
+#    解决不能发送cookie到客户端，还一步在nginx中解决
+  add-host-header: true
+  sensitive-headers: #覆盖敏感词信息
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 #熔断超时时长：5000ms
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+#  MaxAutoRetries: 0
+#  MaxAutoRetriesNextServere: 0
+ly:
+  jwt:
+    pubKeyPath: D:/hm/rsa.pub # 公钥地址
+    tokenKey: LY_TOKEN
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

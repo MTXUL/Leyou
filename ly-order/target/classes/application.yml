@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yun6?useUnicode=true&amp&characterEncoding=utf-8
+    username: root
+    password: 1234
+  jackson:
+    default-property-inclusion: non_null
+server:
+  port: 8089
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+mybatis:
+  type-aliases-package: com.leyou.order.pojo
+ly:
+  jwt:
+    pubKeyPath: D:/hm/rsa.pub # 公钥地址
+    tokenKey: LY_TOKEN
+  work:
+    workerId: 1
+    datacenterId: 1
+  pay:
+    appID: wx8397f8696b538317
+    mchID: 1473426802
+    key: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb
+    httpConnectTimeoutMs: 1000
+    httpReadTimeoutMs: 8000
+    tradeType: NATIVE
+    spbillCreateIp: 127.0.0.1
+    notifyUrl: http://ueizdi.natappfree.cc/wxpay/notify
