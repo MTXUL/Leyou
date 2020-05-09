@@ -18,9 +18,5 @@ spring:
     name: sms-server
 server:
   port: 8085
-ly:
-  sms:
-    signName: 乐优商城
-    templateCode: SMS_172358233
-    accessKeyId: LTAIodwNi9oXAikS
-    accessKeySecret: IiVqjZ203OGPzl1sbLYX8j6fQgNH6C
+
+
